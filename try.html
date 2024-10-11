@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Scroll Example</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .card-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            overflow: hidden;
+            width: 85%;
+            scroll-behavior: smooth;
+        }
+
+        .card {
+            flex: 0 0 30%;
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content .badge {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .card-content a {
+            font-size: 14px;
+            color: #007BFF;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .scroll-btn {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .left-btn {
+            left: 10px;
+        }
+
+        .right-btn {
+            right: 10px;
+        }
+
+        .scroll-btn:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <button class="scroll-btn left-btn" onclick="scrollLeft()">&#10094;</button>
+        <div class="cards-wrapper">
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 1">
+                <div class="card-content">
+                    <span class="badge">NEW</span>
+                    <h3>Statista report: the quest for AI dominance</h3>
+                    <p>Artificial intelligence has taken the world by storm, impacting numerous industries.</p>
+                    <a href="#">More Information</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 2">
+                <div class="card-content">
+                    <span class="badge">NEW</span>
+                    <h3>Statista report: sober curious</h3>
+                    <p>The sober curious movement is here, affecting U.S. and UK consumer habits.</p>
+                    <a href="#">More Information</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 3">
+                <div class="card-content">
+                    <span class="badge">NEW</span>
+                    <h3>Whitepaper: AI Trends - Roadmap to 2025</h3>
+                    <p>Get up-to-speed on standout AI trends and adoption in different industries.</p>
+                    <a href="#">More Information</a>
+                </div>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+        <button class="scroll-btn right-btn" onclick="scrollRight()">&#10095;</button>
+    </div>
+    <script>
+        const wrapper = document.querySelector('.cards-wrapper');
+        let scrollAmount = 0;
+
+        function scrollLeft() {
+            const cardWidth = document.querySelector('.card').offsetWidth;
+            const gap = 20; // gap between cards
+            scrollAmount -= (cardWidth + gap);
+            wrapper.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollRight() {
+            const cardWidth = document.querySelector('.card').offsetWidth;
+            const gap = 20; // gap between cards
+            scrollAmount += (cardWidth + gap);
+            wrapper.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+    </script>
+</body>
+
+</html>
